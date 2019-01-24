@@ -1,0 +1,64 @@
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+
+
+  <div class="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+
+      <input type="hidden" class="form-control" id="codigo" [(ngModel)]="codigo" name="codigo">
+
+      <div class="form-group">
+        <label for="nome">Nome do item</label>
+        <input type="text" class="form-control" id="nome" [(ngModel)]="nome" name="nome" required>
+      </div>
+
+      <div class="form-group">
+        <label for="unidadeMedida">Unidade de Medida</label>
+        <select name="unidadeMedida" class="form-control" id="unidadeMedida" [(ngModel)]="unidadeMedida" required #medidaUnidade (change)="onUnidadeChange($event)">
+          <option value="" selected="selected">Selecione uma unidade de medida</option>
+          <option value="kg">Kilo</option>
+          <option value="lt">Litro</option>
+          <option value="un">Unidade</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="quantidade">Quantidade</label>
+        <div class="w-100" id="quantidadeWrapper" [ngClass]="{'kilo': medidaUnidade.value == 'kg', 'litro': medidaUnidade.value == 'lt', 'unidade': medidaUnidade.value == 'un'}" >
+          <input type="number" class="form-control" name="quantidade"
+                    [pattern]="quantidadePattern"
+                    id="quantidade"
+                    [(ngModel)]="quantidade">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="preco">Preço</label>
+        <input currencyMask autocomplete="off" class="form-control" name="preco" id="preco" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" [(ngModel)]="preco" />
+      </div>
+
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="perecivel" name="perecivel" #perecivel="ngModel" [(ngModel)]="cbPerecivel">
+        <label class="form-check-label" for="perecivel" #perecivel>Perecível</label>
+      </div>
+
+      <div class="form-group">
+          <div class="w-100">
+              <label for="validade">Data de validade</label>
+          </div>
+          <div class="w-100">
+            <p-calendar name="validade" [required]="perecivel" dateFormat="dd/mm/yy" [(ngModel)]="dataValidade" touchUI="true"></p-calendar>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <div class="w-100">
+          <label for="fabricacao">Data de fabricação</label>
+        </div>
+        <div class="w-100">
+          <p-calendar name="fabricacao" touchUI="true" dateFormat="dd/mm/yy" [(ngModel)]="dataFabricacao" required></p-calendar>
+        </div>
+      </div>
+
+    </div>
+
+    <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Salvar</button> <button (click)="onCancelar()" class="btn btn-light">Cancelar</button>
+  </form>

@@ -1,0 +1,11 @@
+@media (max-width: 991px) {
+  .bd-sidebar {
+    display:none;
+  }
+}
+
+.bd-sidebar-mob {
+  position:fixed;
+  right:15px;
+  z-index:2;
+}

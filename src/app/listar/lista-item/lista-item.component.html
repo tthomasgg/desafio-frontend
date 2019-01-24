@@ -1,0 +1,15 @@
+<tr>
+    <th scope="row">{{ item.codigo }}</th>
+    <td>{{ item.nome }}</td>
+    <td>{{ item.unidadeMedida }}</td>
+    <td>{{ item.quantidade }}</td>
+    <td>R$ {{ item.preco }}</td>
+    <td>{{ item.perecivel ? 'Sim' : 'Não' }}</td>
+    <td>{{ item.dataValidade }}</td>
+    <td>{{ item.dataFabricacao }}</td>
+    <td>
+      <a routerLink="/editar/{{item.codigo}}">Editar</a>
+      |
+      <a routerLink="/excluir/{{item.codigo}}">Excluir</a>
+    </td>
+</tr>

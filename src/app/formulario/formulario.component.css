@@ -1,0 +1,32 @@
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, p-calendar.ng-invalid.ng-touched {
+    border:1px dashed red;
+}
+
+#quantidadeWrapper {
+  position:relative;
+}
+
+#quantidadeWrapper.litro::before {
+  content: "lt";
+  position: absolute;
+  top: 7px;
+  right: 35px;
+}
+
+#quantidadeWrapper.kilo::after {
+  content: 'kg';
+  position: absolute;
+  top: 7px;
+  right: 35px;
+}
+
+#quantidadeWrapper.unidade::after {
+  content: 'un';
+  position: absolute;
+  top: 7px;
+  right: 35px;  
+}
+
+.btn.btn-light {
+  margin-left:5px;
+}
